@@ -1,40 +1,52 @@
-// Technical Requirements
-// Call $.val() on inputs to get the string value of your user's input
-// Store user input in var city
-// Use $.on(submit) or $.click to figure out when the user clicks the "submit" button
-// Create if / else if / else conditionals to control the flow of your application
-// Write at least six different lines of pseudocode and display them inline as JavaScript comments 
-// Prevent a form submission using the event.preventDefault() function
-// Use the $.ready() handler to delay your code from executing until all DOM assets have been loaded 
-// Get the first element from an attribute name using $.attr()
-// Use the || operator in your conditionals to allow for multiple string values to execute if/else if statement code
-// If a user submits:
-// "New York" or "New York City" or "NYC" make the background of the page nyc.jpg 
-// "San Francisco" or "SF" or "Bay Area" make the background of the page sf.jpg 
-// "Los Angeles" or "LA" or "LAX" make the background of the page la.jpg
-// "Austin" or "ATX" make the background of the page austin.jpg
-// "Sydney" or "SYD" make the background of the page sydney.jpg
+// Pseudo-Code
 
-var images=["images/austin.jpg","images/citipix_skyline.jpg","images/la.jpg","images/nyc.jpg","images/sf.jpg","images/sydney.jpg"];
+// GET names of cities (input)
 
-var input = $('city-type'),
-	button = $('submit-btn'),
-	background = $('body');
+//     IF city = NY, NYC, New york, New York City
+//         change background to ny.jpg
+//     ELSE IF city = SF, San Francisco, Bay Area
+//         change background to sf.jpg
+//     ELSE IF city = LA, LAX, Los Angeles
+//         change background to la.jpg
+//     ELSE IF city = ATX, Austin
+//         change background to austin.jpg    
+//     ELSE IF city = SYD, Sydney
+//         change background to syd.jpg 
+//     ELSE = any other input
+//         create alert
+    
+// END        
 
-// function changeBackground(){
+$(document).ready(function(){
+  var images=["images/austin.jpg","images/citipix_skyline.jpg","images/la.jpg","images/nyc.jpg","images/sf.jpg","images/sydney.jpg"];
 
-// $('#button').click(function(changeBackground);
-$('#submit-btn').click(changeBackground);
+  function changeBackground() {
+    event.preventDefault();
 
-function changeBackground() {
-		if(input == 'NYC', 'New York', 'New York City')
-			$('body').css('background-image', 'url('images/nyc.jpg')');
-	} else {
-		if(input == 'San Francisco', 'SF', 'Bay Area')
-			$('body').css('background-image', 'url('images/sf.jpg')');
-	}
+    var city = $('#city-type').val();
 
-	$('#input').html(changeBackground);
-}
+// Convert all input to lowercase  
+    city = city.toLowerCase().trim();
+
+    if (city === 'nyc' || city === 'new york city' || city === 'new york') {
+        $('body').css('background-image', "url('images/nyc.jpg')");
+    } else if (city === 'sf' || city === 'san francisco' || city === 'bay area') {
+        $('body').css('background-image', "url('images/sf.jpg')");
+    } else if (city === 'la' || city === 'lax' || city === 'los angeles') {
+        $('body').css('background-image', "url('images/la.jpg')");
+    } else if (city === 'atx' || city === 'austin') {
+        $('body').css('background-image', "url('images/austin.jpg')");
+    } else if (city === 'syd' || city === 'sydney') {
+        $('body').css('background-image', "url('images/syd.jpg')");   
+    } else {
+        // console.log('testing incorrect value');
+            alert("Please enter the correct value.");
+    }
+  }
+
+  $('#submit-btn').click(changeBackground);
+});
+
+
 
 
